@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home page</title>
+    <!--    <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>-->
+</head>
+<body>
+<img width="20%" align="right" th:src="@{/photo.jpg}" alt="My photo"/>
+
+<h1>РЕЗЮМЕ</h1>
+<h2 th:utext="${lastName}">last_name</h2>
+<h2 th:utext="${name}">name</h2>
+<h2 th:utext="${middleName}">middle_name</h2>
+<p>Год рождения:</p>
+<p th:text="${birthday}"/>
+<P>Пол:</P>
+<p th:text="${gender}"/>
+<p>Место жительства:</p>
+<p th:text="${city}">city</p>
+<p>Телефон/Telegram:</p>
+<p th:text="${phone}">phone</p>
+<p>Email:</p>
+<p th:text="${email}">email</p>
+<p>Наличие автомобиля и права управления:</p>
+<p th:text="${auto}">auto</p>
+<p>Образование:</p>
+<p th:text="${education}">education</p>
+<p>Иностранные языки:</p>
+<p th:text="${languages}">languages</p>
+<p>Желаемая должность:</p>
+<p th:text="${specialization}">specialization</p>
+<p>Профессиональные навыки:</p>
+<p th:text="${skills}">skills</p>
+<p>Дополнительная информация:</p>
+<p th:text="${additionalInformation}">additional_information</p>
+
+<p>Опыт работы:</p>
+<div th:each="place : ${placeOfWork}">
+    <p>Время работы (время поступления, время увольнения, общее время):</p>
+    <a th:text="${place.getStart()}">start</a>
+    <br/>
+    <a th:text="${place.getFinish()}">finish</a>
+    <br/>
+    <a th:text="${place.getDuration()}">duration</a>
+    <p>Наименование:</p>
+    <a th:text="${place.getName()}">name</a>
+    <p>Место нахождения. Город:</p>
+    <a th:text="${place.getCity()}">city</a>
+    <p>Должность:</p>
+    <a th:text="${place.getPosition()}">position</a>
+    <p>Трудовые обязанности: </p>
+    <a th:text="${place.getDescription()}">description</a>
+    <br/>
+    <br/>
+    <!--    ссылка-->
+    <!--     <a th:href="@{/home/{id}(id=${place.getId()})}" th:href....></a>-->
+
+    <!--    <a th:href="@{/home}"></a>-->
+
+</div>
+<p>Хобби:</p>
+<p th:text="${hobby}">hobby</p>
+</body>
+</html>

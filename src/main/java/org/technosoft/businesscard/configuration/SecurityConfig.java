@@ -45,11 +45,6 @@ public class SecurityConfig {
 //                .csrf().disable()
 //                .cors().disable()
 //                .authorizeHttpRequests()
-//                .requestMatchers("/").permitAll()
-//                .requestMatchers("/home_page/**").hasAnyRole("USER", "ADMIN")
-//                .requestMatchers("/home_page/admin").hasRole("ADMIN")
-//                .anyRequest().permitAll();
-//                .and()
 //                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 //                .and()
 //                .exceptionHandling()

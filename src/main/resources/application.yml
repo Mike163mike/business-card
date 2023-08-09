@@ -3,10 +3,10 @@ spring:
     allow-circular-references: true
   application:
     name: business card
-#  security:
-#    user:
-#      name: Mike
-#      password: password
+  #  security:
+  #    user:
+  #      name: Mike
+  #      password: password
 
   flyway:
     baseline-on-migrate: true
@@ -20,12 +20,14 @@ spring:
       ddl-auto: validate
     show-sql: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-#  sql:
-#    init:
-#      mode: never
-#       mode: always
-##      при первой инициализации
+  #  sql:
+  #    init:
+  #      mode: never
+  #       mode: always
+  ##      при первой инициализации
   docker:
     compose:
       enabled: true
       lifecycle-management: start_and_stop
+
+employeeId: 1
