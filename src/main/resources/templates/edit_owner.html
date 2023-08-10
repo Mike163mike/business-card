@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Editing resume owner</title>
+</head>
+<body>
+<h2>For editing resume owners fields insert correct data in a form:</h2>
+<h4>Notice! For keeping the data in a consistent state it's needed to fill all the form fields with.</h4>
+<!--    form-->
+<form th:method="POST" th:action="@{/admin/edit_owner}" th:object="${owner}">
+    <label for="phone">Enter phone: </label>
+    <input type="text" th:field="*{phone}" id="phone"/>
+    <br/>
+    <label for="email">Enter email: </label>
+    <input type="text" th:field="*{email}" id="email"/>
+    <br/>
+    <label for="auto">Enter auto: </label>
+    <input type="text" th:field="*{auto}" id="auto"/>
+    <br/>
+    <label for="skills">Enter skills: </label>
+    <input type="text" th:field="*{skills}" id="skills"/>
+    <br/>
+    <label for="additionalInformation">Enter additionalInformation: </label>
+    <input type="text" th:field="*{additionalInformation}" id="additionalInformation"/>
+    <br/>
+    <label for="hobby">Enter hobby: </label>
+    <input type="text" th:field="*{hobby}" id="hobby"/>
+    <br/>
+    <input type="submit" value="Edit"/>
+</form>
+</body>
+</html>

@@ -27,14 +27,4 @@ public class PlaceOfWork {
     private String city;
     private String position;
     private String description;
-
-//    public String getDuration() {
-//        Period period = null;
-//        try {
-//            period = Period.between(start, finish);
-//        } catch (Exception e) {
-//            return "неопределено";
-//        }
-//        return  String.format("%d года(лет) и %d месяц(а, ев)", period.getYears(), period.getMonths());
-//    }
 }

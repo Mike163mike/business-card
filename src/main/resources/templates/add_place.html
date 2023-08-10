@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adding place of work to resume owner</title>
+</head>
+<body>
+<h2>For creating new place of work insert correct data in a form:</h2>
+<h4>Notice! For keeping the data in a consistent state it's needed to fill all the form fields.
+    Date format: YYYY-MM-DD.</h4>
+<!--    form-->
+<form th:method="POST" th:action="@{/admin/add_place}" th:object="${placeOfWork}">
+    <label for="start">Enter start date: </label>
+    <input type="text" th:field="*{start}" id="start"/>
+    <br/>
+    <label for="finish">Enter finish date: </label>
+    <input type="text" th:field="*{finish}" id="finish"/>
+    <br/>
+    <label for="duration">Enter duration: </label>
+    <input type="text" th:field="*{duration}" id="duration"/>
+    <br/>
+    <label for="name">Enter name: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br/>
+    <label for="city">Enter city: </label>
+    <input type="text" th:field="*{city}" id="city"/>
+    <br/>
+    <label for="position">Enter position: </label>
+    <input type="text" th:field="*{position}" id="position"/>
+    <br/>
+    <label for="description">Enter description: </label>
+    <input type="text" th:field="*{description}" id="description"/>
+    <br/>
+    <input type="submit" value="Create"/>
+</form>
+</body>
+</html>

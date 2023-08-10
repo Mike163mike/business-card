@@ -13,42 +13,29 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.technosoft.businesscard.service.SecurityUserService;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
-
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(securedEnabled = true)
-//@AllArgsConstructor
 public class SecurityConfig {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
     private SecurityUserService securityUserService;
-//    private  SecurityUserRepository securityUserRepository;
-//    private  AuthenticationManager authenticationManager;
-
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorizeHttpRequests) ->
                         authorizeHttpRequests
-                                .requestMatchers("/admin").hasRole("ADMIN")
+                                .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .requestMatchers("/**").permitAll()
-                                .anyRequest().authenticated())
-                .formLogin(withDefaults());
-
-        //   .httpBasic(withDefaults());
-        //  .formLogin(withDefaults());
-        //  .addFilterBefore((Filter) authUser(), UsernamePasswordAuthenticationFilter.class);
-//                .csrf().disable()
-//                .cors().disable()
-//                .authorizeHttpRequests()
-//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and()
-//                .exceptionHandling()
-//                .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));
+                                .anyRequest().authenticated()).
+                formLogin(httpSecurityFormLoginConfigurer ->
+                        httpSecurityFormLoginConfigurer
+                                .defaultSuccessUrl("/home"))
+                .logout(httpSecurityLogoutConfigurer ->
+                        httpSecurityLogoutConfigurer
+                                .logoutSuccessUrl("/home"));
         return http.build();
     }
 
@@ -69,15 +56,5 @@ public class SecurityConfig {
             throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
-
-
-//    public void authUser(String username) {
-//        var securityUser = securityUserRepository.findSecurityUsersByUsername(username)
-//                .orElseThrow(NoSuchElementException::new);
-//        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(securityUser.getUsername(),
-//                securityUser.getPassword()));
-//        var userDetails = securityUserService.loadUserByUsername(securityUser.getUsername());
-//    }
-
 }
 

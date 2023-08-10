@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Home page</title>
-    <!--    <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>-->
 </head>
 <body>
 <img width="20%" align="right" th:src="@{/photo.jpg}" alt="My photo"/>
 
 <h1>РЕЗЮМЕ</h1>
+<p>для редактирования, введите Ваш логин и пароль:</p>
+<a th:href="@{/login}">login</a>
+<br/>
+<a th:href="@{/logout}">logout</a>
 <h2 th:utext="${lastName}">last_name</h2>
 <h2 th:utext="${name}">name</h2>
 <h2 th:utext="${middleName}">middle_name</h2>
@@ -34,7 +37,6 @@
 <p th:text="${skills}">skills</p>
 <p>Дополнительная информация:</p>
 <p th:text="${additionalInformation}">additional_information</p>
-
 <p>Опыт работы:</p>
 <div th:each="place : ${placeOfWork}">
     <p>Время работы (время поступления, время увольнения, общее время):</p>
@@ -53,11 +55,6 @@
     <a th:text="${place.getDescription()}">description</a>
     <br/>
     <br/>
-    <!--    ссылка-->
-    <!--     <a th:href="@{/home/{id}(id=${place.getId()})}" th:href....></a>-->
-
-    <!--    <a th:href="@{/home}"></a>-->
-
 </div>
 <p>Хобби:</p>
 <p th:text="${hobby}">hobby</p>

@@ -5,12 +5,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.technosoft.businesscard.model.Employee;
 import org.technosoft.businesscard.model.PlaceOfWork;
 import org.technosoft.businesscard.service.EmployeeService;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping
 public class HomePageController {
 
     private final EmployeeService employeeService;
@@ -40,35 +40,46 @@ public class HomePageController {
         model.addAttribute("placeOfWork", placeOfWork);
         return "home_page";
     }
-//    , start, finish, duration, city, position, description
-    @GetMapping("/admin")
-    public String editHomePage() {
-        return "login_page.html";
+
+    @GetMapping("/admin/add_place")
+    public String testEditing(Model model) {
+        model.addAttribute("placeOfWork", new PlaceOfWork());
+        return "add_place";
     }
 
-    @GetMapping("/test/{id}")
-    public String testEndpoint(@PathVariable Integer id, Model model) {
-        var employee = employeeService.getEmployeeById(id);
-        var placeOfWork = employeeService.getAllPlacesOfWork();
-        model.addAttribute("city", employee.getCity());
-        model.addAttribute("lastname", employee.getLastName());
-        model.addAttribute("gender", employee.getGender());
-        model.addAttribute("placeOfWork", placeOfWork);
-        return "home_page";
-    }
-
-
-    @PostMapping("/edit")
+    @PostMapping("/admin/add_place")
     public String addNewPlaceOfWork(@ModelAttribute("placeOfWork") PlaceOfWork placeOfWork) {
-        System.err.println(placeOfWork.getCity() + " " + placeOfWork.getName()
-                + " " + placeOfWork.getPosition() + " " + placeOfWork.getDuration());
         employeeService.createNewPlaceOfWork(placeOfWork);
         return "redirect:/home";
     }
 
-    @GetMapping("/edit")
-    public String testEditing(Model model) {
-        model.addAttribute("placeOfWork", new PlaceOfWork());
-        return "edit_page";
+    @GetMapping("/admin/edit_owner")
+    public String editOwner(Model model) {
+        model.addAttribute("owner", new Employee());
+        return "edit_owner";
+    }
+
+//    @PostMapping("/admin/edit_owner")
+//    public String editOwner(@ModelAttribute("owner") Employee employee) {
+//        employeeService.editEmployee(employee);
+//        return "redirect:/home";
+//    }
+
+    @PostMapping("/admin/edit_owner")
+    public String editOwner(@RequestParam("phone") String phone,
+                            @RequestParam("email") String email,
+                            @RequestParam("auto") String auto,
+                            @RequestParam("skills") String skills,
+                            @RequestParam("additionalInformation") String additionalInformation,
+                            @RequestParam("hobby") String hobby) {
+        var editedEmployee = employeeService.getEmployeeById(employeeId);
+        editedEmployee.setPhone(phone);
+        editedEmployee.setEmail(email);
+        editedEmployee.setAuto(auto);
+        editedEmployee.setSkills(skills);
+        editedEmployee.setAdditionalInformation(additionalInformation);
+        editedEmployee.setHobby(hobby);
+        employeeService.editEmployee(editedEmployee);
+        return "redirect:/home";
     }
 }
