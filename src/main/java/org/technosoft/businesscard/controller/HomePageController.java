@@ -22,21 +22,7 @@ public class HomePageController {
     public String openHomepage(Model model) {
         var employee = employeeService.getEmployeeById(employeeId);
         var placeOfWork = employeeService.getAllPlacesOfWork();
-        model.addAttribute("lastName", employee.getLastName());
-        model.addAttribute("name", employee.getName());
-        model.addAttribute("middleName", employee.getMiddleName());
-        model.addAttribute("birthday", employee.getBirthday());
-        model.addAttribute("phone", employee.getPhone());
-        model.addAttribute("email", employee.getEmail());
-        model.addAttribute("city", employee.getCity());
-        model.addAttribute("specialization", employee.getSpecialization());
-        model.addAttribute("gender", employee.getGender());
-        model.addAttribute("education", employee.getEducation());
-        model.addAttribute("languages", employee.getLanguages());
-        model.addAttribute("skills", employee.getSkills());
-        model.addAttribute("auto", employee.getAuto());
-        model.addAttribute("additionalInformation", employee.getAdditionalInformation());
-        model.addAttribute("hobby", employee.getHobby());
+        model.addAttribute("employee", employee);
         model.addAttribute("placeOfWork", placeOfWork);
         return "home_page";
     }
