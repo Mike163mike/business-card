@@ -59,12 +59,6 @@ public class HomePageController {
         return "edit_owner";
     }
 
-//    @PostMapping("/admin/edit_owner")
-//    public String editOwner(@ModelAttribute("owner") Employee employee) {
-//        employeeService.editEmployee(employee);
-//        return "redirect:/home";
-//    }
-
     @PostMapping("/admin/edit_owner")
     public String editOwner(@RequestParam("phone") String phone,
                             @RequestParam("email") String email,

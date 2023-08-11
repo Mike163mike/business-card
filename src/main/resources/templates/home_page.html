@@ -2,41 +2,48 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="styles.css" />
     <title>Home page</title>
 </head>
 <body>
 <img width="20%" align="right" th:src="@{/photo.jpg}" alt="My photo"/>
-
 <h1>РЕЗЮМЕ</h1>
-<p>для редактирования, введите Ваш логин и пароль:</p>
+<p>для входа/выхода из системы перейдите по ссылке, затем введите Ваш логин и пароль:</p>
 <a th:href="@{/login}">login</a>
 <br/>
 <a th:href="@{/logout}">logout</a>
+<br/>
+<p>для редактирования данных владельца резюме, перейдите по ссылке:</p>
+<a th:href="@{/admin/edit_owner}">edit resume owner data</a>
+<br/>
+<p>для добавления места работы, перейдите по ссылке:</p>
+<a th:href="@{/admin/add_place}">add place of work</a>
+<br/>
 <h2 th:utext="${lastName}">last_name</h2>
 <h2 th:utext="${name}">name</h2>
 <h2 th:utext="${middleName}">middle_name</h2>
 <p>Год рождения:</p>
-<p th:text="${birthday}"/>
+<a th:text="${birthday}"/>
 <P>Пол:</P>
-<p th:text="${gender}"/>
+<a th:text="${gender}"/>
 <p>Место жительства:</p>
-<p th:text="${city}">city</p>
+<a th:text="${city}">city</a>
 <p>Телефон/Telegram:</p>
-<p th:text="${phone}">phone</p>
+<a th:text="${phone}">phone</a>
 <p>Email:</p>
-<p th:text="${email}">email</p>
+<a th:text="${email}">email</a>
 <p>Наличие автомобиля и права управления:</p>
-<p th:text="${auto}">auto</p>
+<a th:text="${auto}">auto</a>
 <p>Образование:</p>
-<p th:text="${education}">education</p>
+<a th:text="${education}">education</a>
 <p>Иностранные языки:</p>
-<p th:text="${languages}">languages</p>
+<a th:text="${languages}">languages</a>
 <p>Желаемая должность:</p>
-<p th:text="${specialization}">specialization</p>
+<a th:text="${specialization}">specialization</a>
 <p>Профессиональные навыки:</p>
-<p th:text="${skills}">skills</p>
+<a th:text="${skills}">skills</a>
 <p>Дополнительная информация:</p>
-<p th:text="${additionalInformation}">additional_information</p>
+<a th:text="${additionalInformation}">additional_information</a>
 <p>Опыт работы:</p>
 <div th:each="place : ${placeOfWork}">
     <p>Время работы (время поступления, время увольнения, общее время):</p>
@@ -54,9 +61,8 @@
     <p>Трудовые обязанности: </p>
     <a th:text="${place.getDescription()}">description</a>
     <br/>
-    <br/>
 </div>
 <p>Хобби:</p>
-<p th:text="${hobby}">hobby</p>
+<a th:text="${hobby}">hobby</a>
 </body>
 </html>

@@ -2,11 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="styles.css" />
     <title>Editing resume owner</title>
 </head>
 <body>
 <h2>For editing resume owners fields insert correct data in a form:</h2>
 <h4>Notice! For keeping the data in a consistent state it's needed to fill all the form fields with.</h4>
+<p>для возврата на домашнюю страницу без внесения изменений перейдите по ссылке:</p>
+<a th:href="@{/home}"><--домой</a>
+<br/>
+<br/>
 <!--    form-->
 <form th:method="POST" th:action="@{/admin/edit_owner}" th:object="${owner}">
     <label for="phone">Enter phone: </label>

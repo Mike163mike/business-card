@@ -57,6 +57,7 @@ image). После остановки приложения контейнер о
 ● Spring Security\
 ● Docker\
 ● Lombok
+● HTML/CSS
 
 ###  ТЗ:
 

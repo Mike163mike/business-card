@@ -2,12 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="styles.css" />
     <title>Adding place of work to resume owner</title>
 </head>
 <body>
 <h2>For creating new place of work insert correct data in a form:</h2>
 <h4>Notice! For keeping the data in a consistent state it's needed to fill all the form fields.
     Date format: YYYY-MM-DD.</h4>
+<p>для возврата на домашнюю страницу без внесения изменений перейдите по ссылке:</p>
+<a th:href="@{/home}"><--домой</a>
+<br/>
+<br/>
 <!--    form-->
 <form th:method="POST" th:action="@{/admin/add_place}" th:object="${placeOfWork}">
     <label for="start">Enter start date: </label>
