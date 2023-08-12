@@ -8,13 +8,11 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.technosoft.businesscard.model.Role;
 import org.technosoft.businesscard.repository.SecurityUserRepository;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,21 +20,25 @@ import java.util.stream.Collectors;
 public class SecurityUserService implements UserDetailsService {
 
     private final SecurityUserRepository securityUserRepository;
-    private final PasswordEncoder passwordEncoder;
 
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        var securityUser = securityUserRepository.findSecurityUsersByUsername(username)
-                .orElseThrow(NoSuchElementException::new);
-        return new User(
-                passwordEncoder.encode(securityUser.getUsername()),
-                securityUser.getPassword(),
-                true,
-                true,
-                true,
-                true,
-                mapRolesToAuthorities(securityUser.getRoles()));
+        var securityUser = securityUserRepository.findSecurityUsersByUsername(username);
+        var role = new Role();
+        role.setName("USER");
+        return securityUser.map(user -> new User(
+                        user.getUsername(),
+                        user.getPassword(),
+                        true,
+                        true,
+                        true,
+                        true,
+                        mapRolesToAuthorities(user.getRoles())))
+                .orElseGet(() -> new User(
+                        "Stranger",
+                        "$2a$12$WIF7iut1rjofbtyNnx44GeawadAYyQ3JfN84ng1dszuqLgNfU4LFm",
+                        mapRolesToAuthorities(List.of())));
     }
 
     public List<GrantedAuthority> mapRolesToAuthorities(List<Role> roles) {

@@ -29,8 +29,8 @@ public class SecurityConfig {
                         authorizeHttpRequests
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .requestMatchers("/**").permitAll()
-                                .anyRequest().authenticated()).
-                formLogin(httpSecurityFormLoginConfigurer ->
+                                .anyRequest().authenticated())
+                .formLogin(httpSecurityFormLoginConfigurer ->
                         httpSecurityFormLoginConfigurer
                                 .defaultSuccessUrl("/home"))
                 .logout(httpSecurityLogoutConfigurer ->
@@ -39,7 +39,8 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Bean   public DaoAuthenticationProvider daoAuthenticationProvider() {
+    @Bean
+    public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setPasswordEncoder(bCryptPasswordEncoder);
         authenticationProvider.setUserDetailsService(securityUserService);

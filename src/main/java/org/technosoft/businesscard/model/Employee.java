@@ -1,7 +1,10 @@
 package org.technosoft.businesscard.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -18,9 +21,7 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    @Column(name = "middle_name")
     private String middleName;
-    @Column(name = "last_name")
     private String lastName;
     private LocalDate birthday;
     private String gender;
@@ -32,7 +33,6 @@ public class Employee {
     private String languages;
     private String skills;
     private String auto;
-    @Column(name = "additional_information")
     private String additionalInformation;
     private String hobby;
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
